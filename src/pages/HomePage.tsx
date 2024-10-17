@@ -1,3 +1,4 @@
+import { Text } from "@/components/Text";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/contexts/useTheme";
 import { useState } from "react";
@@ -7,21 +8,15 @@ const HomePage = () => {
   const { toggleTheme, theme } = useTheme();
 
   return (
-    <>
-      <h1>Vite + React</h1>
+    <div className="p-4">
+      <Text className={"text-xl font-semibold mb-2"}>Vite + React</Text>
       <div className="card">
-        <Button onClick={() => setCount((count) => count + 1)}>
+        <Button onClick={() => setCount((count) => count + 1)} className="mr-2">
           count is {count}
         </Button>
         <Button onClick={toggleTheme}>Toggle theme {theme}</Button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   );
 };
 
