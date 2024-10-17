@@ -1,4 +1,3 @@
-import { useTheme } from "@/contexts/useTheme";
 import { cn } from "@/lib/utils";
 
 export interface TextProps {
@@ -7,15 +6,8 @@ export interface TextProps {
 }
 
 export const Text = ({ children, className }: TextProps) => {
-  const { theme } = useTheme();
-
   return (
-    <div
-      className={cn(
-        theme === "light" ? "text-text-light" : "text-text-dark",
-        className
-      )}
-    >
+    <div className={cn("text-text-light dark:text-text-dark", className)}>
       {children}
     </div>
   );
