@@ -14,6 +14,10 @@ export default {
           light: "#F3F4F7",
           dark: "#1D222B",
         },
+        // body: {
+        //   light: "#F3F4F7",
+        //   dark: "#09090B",
+        // },
         card: {
           light: "#FFFFFF",
           dark: "#2C2C2C",
@@ -21,6 +25,7 @@ export default {
         header: {
           light: "#FFFFFF",
           dark: "#212631",
+          //   dark: "#09090B",
         },
         text: {
           light: "#080A0D",
