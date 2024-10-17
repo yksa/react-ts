@@ -18,7 +18,7 @@ export const Header = () => {
   return (
     <>
       <header
-        className={`h-[50px] px-4 flex flex-col justify-center bg-header-light dark:bg-header-dark border-border-light dark:border-border-dark`}
+        className={`h-[49px] px-4 flex flex-col justify-center bg-header-light dark:bg-header-dark`}
       >
         <nav>
           <ul className="flex space-x-4">
