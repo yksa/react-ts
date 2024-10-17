@@ -8,6 +8,8 @@ import Body from "./components/Body";
 import SideMenu from "./components/SideMenu";
 import { useAppDispatch, useAppSelector } from "./hooks/useRedux";
 import { toggleSideMenu } from "./redux/features/uiSlice";
+import ErrorBoundary from "./components/ErrorBoundary";
+import { Text } from "./components/Text";
 
 function App() {
   const isSideMenuOpen = useAppSelector((state) => state.ui.isSideMenuOpen);
@@ -37,7 +39,14 @@ function App() {
             <SideMenu />
             <main className="flex-1 flex flex-col">
               <Routes>
-                <Route path="/" element={<HomePage />} />
+                <Route
+                  path="/"
+                  element={
+                    <ErrorBoundary fallback={<Text>Something went wrong</Text>}>
+                      <HomePage />
+                    </ErrorBoundary>
+                  }
+                />
 
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>

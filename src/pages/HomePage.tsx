@@ -6,6 +6,11 @@ import { useState } from "react";
 const HomePage = () => {
   const [count, setCount] = useState(0);
   const { toggleTheme, theme } = useTheme();
+  const [throwError, setThrowError] = useState(false);
+
+  if (throwError) {
+    throw new Error("Intentional Error");
+  }
 
   return (
     <div className="p-4">
@@ -14,7 +19,10 @@ const HomePage = () => {
         <Button onClick={() => setCount((count) => count + 1)} className="mr-2">
           count is {count}
         </Button>
-        <Button onClick={toggleTheme}>Toggle theme {theme}</Button>
+        <Button onClick={toggleTheme} className="mr-2">
+          Toggle theme {theme}
+        </Button>
+        <Button onClick={() => setThrowError(true)}>Throw Error</Button>
       </div>
     </div>
   );
