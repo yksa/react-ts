@@ -75,8 +75,7 @@ export const Header = () => {
               <FontAwesomeIcon
                 icon={faLanguage}
                 size="lg" // Change size to 'lg', '2x', etc.
-                className={`hover:underline transition-transform transform hover:scale-110
-                    text-text-light dark:text-text-dark
+                className={`hover:underline transition-transform transform hover:scale-110 text-text-light dark:text-text-dark
                    `}
               />
             </li>
