@@ -1,4 +1,4 @@
-import { Language } from "@/config/languages";
+import { Language } from "@/config/languageTypes";
 import en from "./en.json";
 import my from "./my.json";
 import th from "./th.json";

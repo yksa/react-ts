@@ -3,7 +3,7 @@ import {
   AVAILABLE_LANGUAGES,
   DEFAULT_LANGUAGE,
   Language,
-} from "@/config/languages";
+} from "@/config/languageTypes";
 
 export const useLanguage = () => {
   const { i18n, t } = useTranslation();

@@ -3,16 +3,17 @@ import {
   faBars,
   faLanguage,
   faMoon,
+  faSignOutAlt,
   faSun,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Separator } from "./ui/separator";
 import { Text } from "./Text";
 import { useDispatch } from "react-redux";
 import { toggleSideMenu } from "@/redux/features/uiSlice";
 import { useLanguage } from "@/hooks/useLanguage";
-import { AVAILABLE_LANGUAGES, Language } from "@/config/languages";
+import { AVAILABLE_LANGUAGES, Language } from "@/config/languageTypes";
 import {
   Select,
   SelectContent,
@@ -20,14 +21,26 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
+import { useLogout } from "@/hooks/useAuth";
+import { clearAuth } from "@/redux/features/authSlice";
 
 export const Header = () => {
   const { theme, toggleTheme } = useTheme();
   const dispatch = useDispatch();
   const { t, changeLanguage, currentLanguage } = useLanguage();
+  const { mutate } = useLogout();
+  const navigate = useNavigate();
 
   const handleSideMenu = () => {
     dispatch(toggleSideMenu());
+  };
+
+  const handleLogout = () => {
+    dispatch(clearAuth());
+    // navigate to root use react-router-doom
+    navigate("/", { replace: true });
+
+    mutate();
   };
 
   return (
@@ -59,9 +72,7 @@ export const Header = () => {
               <FontAwesomeIcon
                 icon={theme === "light" ? faMoon : faSun}
                 size="lg" // Change size to 'lg', '2x', etc.
-                className={`hover:underline transition-transform transform hover:scale-110 ${
-                  theme === "light" ? "text-text-light" : "text-text-dark"
-                }`}
+                className={`hover:underline transition-transform transform hover:scale-110 text-text-light dark:text-text-dark`}
               />
             </li>
             <li
@@ -101,6 +112,13 @@ export const Header = () => {
               <Link to="/login" className="hover:underline">
                 <Text>Login</Text>
               </Link>
+            </li>
+            <li className="cursor-pointer" onClick={handleLogout}>
+              <FontAwesomeIcon
+                icon={faSignOutAlt}
+                size="lg" // Change size to 'lg', '2x', etc.
+                className={`hover:underline transition-transform transform hover:scale-110 text-text-light dark:text-text-dark`}
+              />
             </li>
           </ul>
         </nav>

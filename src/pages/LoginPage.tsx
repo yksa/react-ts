@@ -16,6 +16,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Text } from "@/components/Text";
 import { Card } from "@/components/ui/card";
+import { useAuth, useLogin } from "@/hooks/useAuth";
+import { Navigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const formSchema = z.object({
   username: z.string().min(2, { message: "Username is required" }),
@@ -23,6 +26,9 @@ const formSchema = z.object({
 });
 
 const LoginPage = () => {
+  const { mutate, isPending, error } = useLogin();
+  const { isAuthenticated } = useAuth();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -32,9 +38,18 @@ const LoginPage = () => {
   });
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log(data);
-    toast.success("Login successful");
+    mutate(data);
   };
+
+  useEffect(() => {
+    if (error && error.message) {
+      toast.error(error.message);
+    }
+  }, [error]);
+
+  if (isAuthenticated) {
+    return <Navigate to="/" replace />;
+  }
 
   return (
     <div className="h-full flex justify-center items-center p-4">
@@ -75,6 +90,7 @@ const LoginPage = () => {
                   </FormLabel>
                   <FormControl>
                     <Input
+                      type="password"
                       placeholder="Enter your password"
                       {...field}
                       className="text-text-light dark:text-text-dark"
@@ -87,8 +103,8 @@ const LoginPage = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full">
-              Submit
+            <Button type="submit" className="w-full" disabled={isPending}>
+              Submit{isPending && "..."}
             </Button>
           </form>
         </Form>
