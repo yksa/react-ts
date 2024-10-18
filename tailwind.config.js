@@ -12,20 +12,15 @@ export default {
       colors: {
         body: {
           light: "#F3F4F7",
-          dark: "#1D222B",
+          dark: "#09090B",
         },
-        // body: {
-        //   light: "#F3F4F7",
-        //   dark: "#09090B",
-        // },
         card: {
           light: "#FFFFFF",
           dark: "#2C2C2C",
         },
         header: {
           light: "#FFFFFF",
-          dark: "#212631",
-          //   dark: "#09090B",
+          dark: "#0F0F0F",
         },
         text: {
           light: "#080A0D",
@@ -47,8 +42,8 @@ export default {
           dark: "#1B5E20",
         },
         border: {
-          light: "#DBDFE5",
-          dark: "#383C46",
+          light: "#D1D5DB",
+          dark: "#374151",
         },
       },
     },

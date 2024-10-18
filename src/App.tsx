@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from "./hooks/useRedux";
 import { toggleSideMenu } from "./redux/features/uiSlice";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { Text } from "./components/Text";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   const isSideMenuOpen = useAppSelector((state) => state.ui.isSideMenuOpen);
@@ -47,7 +48,7 @@ function App() {
                     </ErrorBoundary>
                   }
                 />
-
+                <Route path="/login" element={<LoginPage />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>
             </main>

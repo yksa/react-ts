@@ -33,7 +33,7 @@ export const Header = () => {
   return (
     <>
       <header
-        className={`h-[49px] px-4 flex flex-col justify-center bg-header-light dark:bg-header-dark`}
+        className={`h-[49px] px-4 flex flex-col justify-center bg-header-light dark:bg-header-dark select-none`}
       >
         <nav>
           <ul className="flex space-x-4 items-center">
@@ -45,12 +45,12 @@ export const Header = () => {
               />
             </li>
             <li>
-              <Link to="/" className="text-white hover:underline">
+              <Link to="/" className="hover:underline">
                 <Text>{t("welcome")}</Text>
               </Link>
             </li>
-            <li>
-              <Link to="/" className="text-white hover:underline">
+            <li className="hidden md:block">
+              <Link to="/" className="hover:underline">
                 <Text>Home</Text>
               </Link>
             </li>
@@ -79,7 +79,7 @@ export const Header = () => {
                    `}
               />
             </li>
-            <li>
+            <li className="hidden md:block">
               <Select
                 onValueChange={(lang: Language) => changeLanguage(lang)}
                 value={currentLanguage}
@@ -95,6 +95,12 @@ export const Header = () => {
                   ))}
                 </SelectContent>
               </Select>
+            </li>
+            {/* login */}
+            <li>
+              <Link to="/login" className="hover:underline">
+                <Text>Login</Text>
+              </Link>
             </li>
           </ul>
         </nav>
