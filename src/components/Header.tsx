@@ -118,7 +118,7 @@ export const Header = () => {
               </li>
             ) : (
               <>
-                {/* <li
+                <li
                   className="cursor-pointer"
                   onClick={() => navigate("/profile")}
                 >
@@ -127,7 +127,7 @@ export const Header = () => {
                     size="lg" // Change size to 'lg', '2x', etc.
                     className={`hover:underline transition-transform transform hover:scale-110 text-text-light dark:text-text-dark`}
                   />
-                </li> */}
+                </li>
                 <li className="cursor-pointer" onClick={handleLogout}>
                   <FontAwesomeIcon
                     icon={faSignOutAlt}
@@ -137,13 +137,6 @@ export const Header = () => {
                 </li>
               </>
             )}
-            <li className="cursor-pointer" onClick={() => navigate("/profile")}>
-              <FontAwesomeIcon
-                icon={faUserAlt}
-                size="lg" // Change size to 'lg', '2x', etc.
-                className={`hover:underline transition-transform transform hover:scale-110 text-text-light dark:text-text-dark`}
-              />
-            </li>
           </ul>
         </nav>
       </header>
