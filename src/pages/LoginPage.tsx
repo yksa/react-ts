@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Text } from "@/components/Text";
+import { Card } from "@/components/ui/card";
 
 const formSchema = z.object({
   username: z.string().min(2, { message: "Username is required" }),
@@ -33,11 +34,11 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="h-full flex justify-center items-center">
-      <div className="w-full max-w-md p-8 bg-header-light dark:bg-header-dark rounded shadow-lg border border-border-light dark:border-border-dark">
+    <div className="h-full flex justify-center items-center p-4">
+      <Card className="w-full max-w-md p-4 md:p-8">
         <Text className="text-2xl font-semibold text-center mb-6">Login</Text>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
               control={form.control}
               name="username"
@@ -83,10 +84,12 @@ const LoginPage = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit">Submit</Button>
+            <Button type="submit" className="w-full">
+              Submit
+            </Button>
           </form>
         </Form>
-      </div>
+      </Card>
     </div>
   );
 };

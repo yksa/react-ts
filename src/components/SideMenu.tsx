@@ -12,13 +12,13 @@ const SideMenu = () => {
 
   return (
     <aside
-      className={`fixed top-0 left-0 w-64 h-full box-border transform border-r-1 z-10 flex flex-col ${
+      className={`fixed top-0 left-0 w-64 h-full box-border transform border-r z-10 flex flex-col ${
         isSideMenuOpen ? "translate-x-0" : "-translate-x-full"
       } transition-transform duration-300 bg-header-light border-border-light dark:bg-header-dark dark:border-border-dark`}
     >
       <nav className="flex-grow">
         <div
-          className={`h-[50px] border-b-1 flex justify-center items-center px-4 mb-2 border-border-light dark:border-border-dark`}
+          className={`h-[50px] border-b flex justify-center items-center px-4 mb-2 border-border-light dark:border-border-dark`}
         >
           <Text>Welcome</Text>
           {isSideMenuOpen && (

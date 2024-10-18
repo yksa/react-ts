@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <footer
-      className={`flex items-center justify-center gap-2 py-4 px-4 border-t-1
+      className={`flex items-center justify-center gap-2 py-4 px-4 border-t
     border-border-light bg-header-light dark:border-border-dark dark:bg-header-dark
     `}
     >
