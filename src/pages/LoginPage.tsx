@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "react-toastify";
+
 import {
   Form,
   FormControl,
@@ -31,6 +33,7 @@ const LoginPage = () => {
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
     console.log(data);
+    toast.success("Login successful");
   };
 
   return (
