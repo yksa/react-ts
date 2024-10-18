@@ -5,6 +5,7 @@ import {
   faMoon,
   faSignOutAlt,
   faSun,
+  faUserAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
@@ -21,7 +22,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
-import { useLogout } from "@/hooks/useAuth";
+import { useAuth, useLogout } from "@/hooks/useAuth";
 import { clearAuth } from "@/redux/features/authSlice";
 
 export const Header = () => {
@@ -30,6 +31,7 @@ export const Header = () => {
   const { t, changeLanguage, currentLanguage } = useLanguage();
   const { mutate } = useLogout();
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
 
   const handleSideMenu = () => {
     dispatch(toggleSideMenu());
@@ -108,14 +110,36 @@ export const Header = () => {
               </Select>
             </li>
             {/* login */}
-            <li>
-              <Link to="/login" className="hover:underline">
-                <Text>Login</Text>
-              </Link>
-            </li>
-            <li className="cursor-pointer" onClick={handleLogout}>
+            {!isAuthenticated ? (
+              <li>
+                <Link to="/login" className="hover:underline">
+                  <Text>Login</Text>
+                </Link>
+              </li>
+            ) : (
+              <>
+                {/* <li
+                  className="cursor-pointer"
+                  onClick={() => navigate("/profile")}
+                >
+                  <FontAwesomeIcon
+                    icon={faUserAlt}
+                    size="lg" // Change size to 'lg', '2x', etc.
+                    className={`hover:underline transition-transform transform hover:scale-110 text-text-light dark:text-text-dark`}
+                  />
+                </li> */}
+                <li className="cursor-pointer" onClick={handleLogout}>
+                  <FontAwesomeIcon
+                    icon={faSignOutAlt}
+                    size="lg" // Change size to 'lg', '2x', etc.
+                    className={`hover:underline transition-transform transform hover:scale-110 text-text-light dark:text-text-dark`}
+                  />
+                </li>
+              </>
+            )}
+            <li className="cursor-pointer" onClick={() => navigate("/profile")}>
               <FontAwesomeIcon
-                icon={faSignOutAlt}
+                icon={faUserAlt}
                 size="lg" // Change size to 'lg', '2x', etc.
                 className={`hover:underline transition-transform transform hover:scale-110 text-text-light dark:text-text-dark`}
               />

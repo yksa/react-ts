@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input";
 import { Text } from "@/components/Text";
 import { Card } from "@/components/ui/card";
 import { useAuth, useLogin } from "@/hooks/useAuth";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
 const formSchema = z.object({
@@ -28,6 +28,7 @@ const formSchema = z.object({
 const LoginPage = () => {
   const { mutate, isPending, error } = useLogin();
   const { isAuthenticated } = useAuth();
+  const location = useLocation();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -48,7 +49,8 @@ const LoginPage = () => {
   }, [error]);
 
   if (isAuthenticated) {
-    return <Navigate to="/" replace />;
+    const redirectPath = location.state?.from === "/profile" ? "/profile" : "/";
+    return <Navigate to={redirectPath} replace />;
   }
 
   return (

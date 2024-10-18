@@ -11,6 +11,8 @@ import { toggleSideMenu } from "./redux/features/uiSlice";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { Text } from "./components/Text";
 import LoginPage from "./pages/LoginPage";
+import ProtectedRoute from "./components/ProtectedRoute";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   const isSideMenuOpen = useAppSelector((state) => state.ui.isSideMenuOpen);
@@ -46,6 +48,14 @@ function App() {
                     <ErrorBoundary fallback={<Text>Something went wrong</Text>}>
                       <HomePage />
                     </ErrorBoundary>
+                  }
+                />
+                <Route
+                  path="/profile"
+                  element={
+                    <ProtectedRoute redirectPath="/profile">
+                      <ProfilePage />
+                    </ProtectedRoute>
                   }
                 />
                 <Route path="/login" element={<LoginPage />} />
